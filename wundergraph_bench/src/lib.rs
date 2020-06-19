@@ -38,6 +38,8 @@ use diesel::r2d2::{ConnectionManager, PooledConnection};
 use wundergraph::scalar::WundergraphScalarValue;
 
 pub mod api;
+#[cfg(feature = "mysql")]
+pub mod mysql;
 
 pub type Schema<Connection> = juniper::RootNode<
     'static,

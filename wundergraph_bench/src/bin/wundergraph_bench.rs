@@ -80,6 +80,9 @@ type DbConnection = diesel::pg::PgConnection;
 #[cfg(feature = "sqlite")]
 type DbConnection = diesel::sqlite::SqliteConnection;
 
+#[cfg(feature = "mysql")]
+type DbConnection = diesel::mysql::MysqlConnection;
+
 #[allow(clippy::print_stdout)]
 fn main() {
     let opt = Opt::from_args();

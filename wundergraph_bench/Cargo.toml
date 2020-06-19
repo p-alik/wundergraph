@@ -28,3 +28,4 @@ structopt = "0.3"
 default = ["postgres"]
 postgres = ["wundergraph/postgres", "diesel/postgres"]
 sqlite = ["wundergraph/sqlite", "diesel/sqlite"]
+mysql = ["wundergraph/mysql", "diesel/mysql"]

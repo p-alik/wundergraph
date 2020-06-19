@@ -119,6 +119,21 @@ table! {
     }
 }
 
+#[cfg(feature = "mysql")]
+table! {
+    films (film_id) {
+        film_id -> Integer,
+        title -> Varchar,
+        description -> Nullable<Text>,
+        release_year -> Nullable<Integer>,
+        language_id -> SmallInt,
+        rental_duration -> SmallInt,
+        length -> Nullable<SmallInt>,
+        rating -> Nullable<Text>,
+        last_update -> Timestamp,
+    }
+}
+
 table! {
     genres (genre_id) {
         genre_id -> Int4,
@@ -550,8 +565,9 @@ pub struct EmployeeChangeset {
     email: Option<String>,
 }
 
-#[derive(Insertable, GraphQLInputObject, Clone, Debug, Copy)]
-#[table_name = "film_actor"]
+#[cfg_attr(not(feature = "mysql"), derive(Insertable))]
+#[derive(GraphQLInputObject, Debug, Copy, Clone)]
+#[cfg_attr(not(feature = "mysql"), table_name = "film_actor")]
 pub struct NewFilmActor {
     last_update: NaiveDateTime,
 }
