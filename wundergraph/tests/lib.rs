@@ -27,5 +27,8 @@ type DbConnection = diesel::pg::PgConnection;
 #[cfg(feature = "sqlite")]
 type DbConnection = diesel::sqlite::SqliteConnection;
 
-#[cfg(not(any(feature = "postgres", feature = "sqlite")))]
-compile_error!("At least one feature of \"sqlite\" or \"postgres\" needs to be enabled");
+#[cfg(feature = "mysql")]
+type DbConnection = diesel::mysql::MysqlConnection;
+
+#[cfg(not(any(feature = "postgres", feature = "sqlite", feature = "mysql")))]
+compile_error!("At least one feature of \"sqlite\", \"postgres\" or \"mysql\" needs to be enabled");
